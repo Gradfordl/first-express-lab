@@ -12,9 +12,22 @@ app.listen(3000, () => {
 
 //===========================================================
 
-app.get("/tip/:total/:tip", (total, tipPercentage) => {
-    let tipCalc = parseInt(total.params.tip) / 100
-    tipPercentage.send(`Suggested tip amount is $${parseInt(total.params.total) * tipCalc}`)
+app.get("/tip/:total/:tip", (req, res) => {
+    let tipCalc = parseInt(req.params.tip) / 100
+    res.send(`Suggested tip amount is $${parseInt(req.params.total) * tipCalc}`)
 })
 
 //===========================================================
+
+const quotes = ["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely","You may rely on it", "As I see it yes", "Most likely", "Outlook good","Yes", "Signs point to yes", "Reply hazy try again", "Ask again later","Better not tell you now", "Cannot predict now", "Concentrate and ask again","Don't count on it", "My reply is no", "My sources say no","Outlook not so good", "Very doubtful"]
+
+app.get("/magic/:quote", (req, res) => {
+    const rdmQuote = Math.floor(Math.random() * quotes.length)
+    res.send(`<h1>${req.params.quote}</h1> 
+    <p>${quotes[rdmQuote]}</p>`)
+
+})
+
+
+
+
