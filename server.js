@@ -1,10 +1,5 @@
 const express = require("express");
-
 const app = express();
-
-app.listen(3000, () => {
-  console.log("Listening on port 3000, SUCCESS");
-});
 
 //====================GREETINGS=================================
 app.get("/greeting/:name", (req, res) => {
@@ -13,7 +8,7 @@ app.get("/greeting/:name", (req, res) => {
 
 //===================TIP CALCULATOR=============================
 
-app.get("/tip/:total/:tip", (req, res) => {
+app.get("/tip/:total/:tipPercentage", (req, res) => {
   let tipCalc = parseInt(req.params.tip) / 100;
   res.send(`Suggested tip amount is $${parseInt(req.params.total) * tipCalc}`);
 });
@@ -47,4 +42,8 @@ app.get("/magic/:quote", (req, res) => {
   const rdmQuote = Math.floor(Math.random() * quotes.length);
   res.send(`<h1>${req.params.quote}</h1> 
     <p>${quotes[rdmQuote]}</p>`);
+});
+
+app.listen(3000, () => {
+  console.log("Listening on port 3000, SUCCESS");
 });
