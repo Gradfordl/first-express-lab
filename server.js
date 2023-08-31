@@ -9,8 +9,9 @@ app.get("/greeting/:name", (req, res) => {
 //===================TIP CALCULATOR=============================
 
 app.get("/tip/:total/:tipPercentage", (req, res) => {
-  let tipCalc = parseInt(req.params.tip) / 100;
-  res.send(`Suggested tip amount is $${parseInt(req.params.total) * tipCalc}`);
+  const { total, tipPercentage } = req.params;
+  const tip = (parseInt(total) * parseInt(tipPercentage)) / 100;
+  res.send(`Suggested tip amount is $${tip}`);
 });
 
 //=====================MAGIC 8 BALL ============================
